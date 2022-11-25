@@ -12,12 +12,11 @@ export const filterListByMonth = (list: Item[], date: string): Item[] => {
     for(let i in list) {
         if(
             list[i].date.getFullYear() === parseInt(year) &&
-            (list[i].date.getMonth()) === parseInt(month)
+            (list[i].date.getMonth() + 1) === parseInt(month)
         ) {
             newList.push(list[i]);
         }
     }
-
     return newList;
 }
 
@@ -31,3 +30,8 @@ return`${addZeroToDate(day)}/${addZeroToDate(month)}/${year}`
 
 const addZeroToDate = (n:number):string => n<10? `0${n}`:`${n}`
   
+export const formatCurrentMonth=(currentMonth:string):string=>{
+    let[year, month] = currentMonth.split('-');
+    let months =['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set', 'Out','Nov','Dez']
+    return`${months[parseInt(month)-1]} de ${year} `
+}
