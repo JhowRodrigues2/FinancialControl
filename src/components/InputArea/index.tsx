@@ -84,7 +84,7 @@ export const InputArea = ({ onAdd }: Props) => {
         <C.Input
           type="text"
           value={titleField}
-          onChange={(e) => setTitleField(e.target.value)}
+          onChange={(e: any) => setTitleField(e.target.value)}
         />
       </C.InputLabel>
       <C.InputLabel>
