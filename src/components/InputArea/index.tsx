@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import * as C from "./styles";
 import { Item } from "../../types/Item";
 
@@ -14,6 +14,7 @@ export const InputArea = ({ onAdd }: Props) => {
   const [categoryField, setCategoryField] = useState("");
   const [titleField, setTitleField] = useState("");
   const [valueField, setValueField] = useState(0);
+  const valueRef = useRef<HTMLInputElement>(null);
 
   let categoryKeys: string[] = Object.keys(categories);
 
@@ -85,6 +86,9 @@ export const InputArea = ({ onAdd }: Props) => {
           type="text"
           value={titleField}
           onChange={(e: any) => setTitleField(e.target.value)}
+          onKeyDown={(e) =>
+            e.key === "Enter" ? valueRef.current?.focus() : undefined
+          }
         />
       </C.InputLabel>
       <C.InputLabel>
@@ -93,6 +97,7 @@ export const InputArea = ({ onAdd }: Props) => {
           type="number"
           value={valueField}
           onChange={(e) => setValueField(parseFloat(e.target.value))}
+          ref={valueRef}
         />
       </C.InputLabel>
       <C.InputLabel>
